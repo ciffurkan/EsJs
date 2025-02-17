@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Es JS DOM</title>
+    <style>
+        .mostra {
+            visibility: visible;
+        }
+
+        .nascondi {
+            visibility: hidden;
+        }
+
+        .stile1 {
+            color: red;
+            background-color: yellow;
+            border: 1 solid black;
+        }
+
+        .stile2 {
+            color: yellow;
+            background-color: blue;
+            border: 1 double black;
+        }
+
+        .stile3 {
+            color: blue;
+            background-color: green;
+            border: 1 dashed black;
+        }
+
+        .stile4 {
+            color: green;
+            background-color: violet;
+            border: 1 dotted black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <p id="helloworld"></p>
+    <p id="testo2">ao</p>
+    <p id="testo3" class="mostra">Ora mi vedi! Se clicchi sul bottone, scompaio!</p>
+    <p id="testo4">Numero di volte in cui mi hai cliccato: 0</p>
+    <img src="alessia.jpg" alt="Alessia Lanza" id="img">
+    <p id="testo5">la droga fa male</p>
+    <p>fa tanto male, ma male, male, male, male</p>
+
+    <button onclick="helloworld()">stampa hello world!</button>
+    <button onclick="bottone2()">Aggiungi testo</button>
+    <button onclick="bottone3()">Mostra/Nascondi</button>
+    <button onclick="bottone4()">conta click</button>
+    <button onclick="bottone5()">cambia immagine</button>
+    <button onclick="bottone6()">cambia stile</button>
+    <button onclick="bottone7()">+</button>
+    <button onclick="bottone8()">-</button>
+    <button onclick="bottone9()">cambio sfondo</button>
+    <button onclick="bottone10()">reset</button>
+
+    <script>
+        let conta = 0;
+        let contaBot = 0;
+        let fontsize = 16;
+        function helloworld() {
+            let x = document.getElementById("helloworld")
+            x.textContent = "Hello World";
+        }
+        function bottone2() {
+            let x = document.getElementById("testo2")
+            let testo = x.textContent;
+            x.textContent = testo + " Ora ho aggiunto questo testo!"
+        }
+        function bottone3() {
+            let x = document.getElementById("testo3")
+            x.classList.toggle("nascondi")
+        }
+        function bottone4() {
+            let x = document.getElementById("testo4")
+            conta++;
+            x.textContent = "Numero di volte in cui mi hai cliccato: " + conta;
+        }
+        function bottone5() {
+            let x = document.getElementById("img")
+
+            if (x.src.includes("alessia.jpg")) {
+                x.setAttribute("src", "diletta.jpg")
+
+            } else {
+                x.setAttribute("src", "alessia.jpg")
+            }
+        }
+
+        function bottone6() {
+            contaBot++;
+            let x = document.getElementById("testo5")
+            if (contaBot == 6) {
+                contaBot = 1;
+            }
+            switch (contaBot) {
+                case 1: x.classList.add("stile1");
+                    break;
+                case 2: x.classList.add("stile2");
+                    x.classList.remove("stile1");
+                    break;
+                case 3: x.classList.add("stile3");
+                    x.classList.remove("stile2");
+                    break;
+                case 4: x.classList.add("stile4");
+                    x.classList.remove("stile3");
+                    break;
+                case 5: x.classList.remove("stile4")
+                    break;
+
+            }
+        }
+
+        function bottone7() {
+            if (fontsize>=100){
+                alert("hai raggiunto 100px");
+            }else{
+                fontsize+=5;
+                document.body.style.fontSize= fontsize + "px";
+            }
+        }
+
+        function bottone8() {
+            if (fontsize<=5){
+                alert("sei già al minimo");
+            }else{
+                fontsize=fontsize-5;
+                document.body.style.fontSize= fontsize + "px";
+            }
+        }
+        function bottone9(){
+            let colore = "#" + Math.floor(Math.random()* 16777215).toString(16);
+            document.body.style.backgroundColor = colore;
+        }
+
+        function bottone10(){
+            location.reload();
+        }
+    </script>
+
+</body>
+
+</html>
